@@ -52,6 +52,9 @@ lint:
 lint-fix:
 	npx biome check --write .
 
+update-deps:
+	npx ncu -u
+
 test:
 	npm test
 
