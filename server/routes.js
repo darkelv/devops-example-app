@@ -1,7 +1,7 @@
 // @ts-check
 
 export default (app) => {
-  app.get('/', (req, reply) => {
+  app.get('/', (_req, reply) => {
     const serverMessage = process.env.SERVER_MESSAGE;
 
     reply.view('index', { serverMessage });

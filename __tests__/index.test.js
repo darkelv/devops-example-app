@@ -20,7 +20,9 @@ describe('app', () => {
 
     expect(res.statusCode).toBe(200);
     expect(res.body).toMatch('Привет от Хекслета!');
-    expect(res.body).toMatch('Приложение запущено, но сообщение сервера не установлено!');
+    expect(res.body).toMatch(
+      'Приложение запущено, но сообщение сервера не установлено!',
+    );
   });
 
   it('main page with environment variable SERVER_MESSAGE', async () => {
@@ -33,7 +35,9 @@ describe('app', () => {
 
     expect(res.statusCode).toBe(200);
     expect(res.body).toMatch('Привет от Хекслета!');
-    expect(res.body).toMatch(`Приложение запущено и передает сообщение: ${process.env.SERVER_MESSAGE}`);
+    expect(res.body).toMatch(
+      `Приложение запущено и передает сообщение: ${process.env.SERVER_MESSAGE}`,
+    );
   });
   //
   // after all(() => {

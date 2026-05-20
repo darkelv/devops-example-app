@@ -1,19 +1,19 @@
 // @ts-check
 
-import { fileURLToPath } from 'url';
-import path from 'path';
-import Pug from 'pug';
-import pointOfView from '@fastify/view';
-import fastifyStatic from '@fastify/static';
-import Rollbar from 'rollbar';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import traps from '@dnlup/fastify-traps';
+import fastifyStatic from '@fastify/static';
+import pointOfView from '@fastify/view';
+import Pug from 'pug';
+import Rollbar from 'rollbar';
 
 import addRoutes from './routes.js';
 
 const __dirname = fileURLToPath(path.dirname(import.meta.url));
 
 const registerErrorHandler = (app) => {
-  app.setErrorHandler((error, request, reply) => {
+  app.setErrorHandler((error, _request, reply) => {
     const { ROLLBAR_TOKEN } = process.env;
     const { message: errorMessage } = error;
 
@@ -48,15 +48,15 @@ const registerPlugins = (app) => {
       },
       includeViewExtension: true,
       templates: path.join(__dirname, '..', 'server', 'views'),
-    }).register(traps, {
+    })
+    .register(traps, {
       onSignal(signal) {
         console.debug(`Received signal ${signal}`);
       },
     });
 };
 
-// eslint-disable-next-line no-unused-vars
-export default (app, options) => {
+export default (app, _options) => {
   registerPlugins(app);
   addRoutes(app);
   registerErrorHandler(app);

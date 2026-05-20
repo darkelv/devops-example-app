@@ -47,10 +47,10 @@ start:
 	npm start
 
 lint:
-	npx eslint .
+	npx biome check .
 
 lint-fix:
-	npx eslint . --fix
+	npx biome check --write .
 
 test:
 	npm test
