@@ -12,10 +12,6 @@ import addRoutes from './routes.js';
 
 const __dirname = fileURLToPath(path.dirname(import.meta.url));
 
-if (process.env.SENTRY_DSN) {
-  Sentry.init({ dsn: process.env.SENTRY_DSN });
-}
-
 const registerErrorHandler = (app) => {
   app.setErrorHandler((error, _request, reply) => {
     const { message: errorMessage } = error;

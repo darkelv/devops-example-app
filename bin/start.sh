@@ -2,7 +2,6 @@
 
 set -e
 
-COMMAND="fastify start server/plugin.js -a 0.0.0.0 -l info | pino-pretty -S"
+export NODE_OPTIONS="--import ./instrument.js"
 
-echo $COMMAND
-eval $COMMAND
+fastify start server/plugin.js -a 0.0.0.0 -l info | pino-pretty -S
