@@ -32,6 +32,21 @@ SERVER_MESSAGE="Hexlet Awesome Server"
 SENTRY_DSN=<your bugsink dsn>
 ```
 
+## Getting Bugsink DSN
+
+Bugsink runs as a local service via Docker Compose. To get the DSN:
+
+1. Start the services: `make compose`
+2. Open http://localhost:8000 and log in (`admin@example.com` / `admin`)
+3. Create a new project
+4. Copy the DSN from the project settings — it looks like:
+   `http://<key>@bugsink:8000/<project_id>`
+5. Add it to your `.env` file:
+   ```env
+   SENTRY_DSN=http://<key>@bugsink:8000/<project_id>
+   ```
+6. Restart the app: `docker compose restart app`
+
 ## Development
 
 ```bash
