@@ -18,7 +18,7 @@ services:
     ports:
       - 8000:8000
     environment:
-      - SECRET_KEY=localdev
+      - SECRET_KEY=localdev-hexlet-devops-example-app-not-for-production-use
       - ALLOWED_HOSTS=localhost,bugsink
       - SUPERUSER_EMAIL=admin@example.com
       - SUPERUSER_PASSWORD=admin
