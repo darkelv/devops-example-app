@@ -12,3 +12,13 @@ services:
     ports:
       - 80:80
       - 443:443
+
+  bugsink:
+    image: bugsink/bugsink:latest
+    ports:
+      - 8000:8000
+    environment:
+      - SECRET_KEY=${BUGSINK_SECRET_KEY}
+      - ALLOWED_HOSTS=localhost,bugsink
+      - SUPERUSER_EMAIL=${BUGSINK_SUPERUSER_EMAIL}
+      - SUPERUSER_PASSWORD=${BUGSINK_SUPERUSER_PASSWORD}

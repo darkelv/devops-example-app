@@ -2,12 +2,12 @@
 
 ![CI status](https://github.com/hexlet-components/devops-example-app/actions/workflows/main.yml/badge.svg) [![Count docker images pulls](https://img.shields.io/docker/pulls/hexletcomponents/devops-example-app.svg)](https://hub.docker.com/r/hexletcomponents/devops-example-app)
 
-This is a simple node application that shows on the main page server on which it is running and report errors to [Rollbar](https://rollbar.com/).
+This is a simple node application that shows on the main page server on which it is running and report errors to [Bugsink](https://www.bugsink.com/).
 
 ## Usage
 
 ```bash
-docker run -p 3000:3000 -e SERVER_MESSAGE="Hexlet Awesome Server" -e ROLLBAR_TOKEN="<your token>" hexletcomponents/devops-example-app
+docker run -p 3000:3000 -e SERVER_MESSAGE="Hexlet Awesome Server" -e SENTRY_DSN="<your dsn>" hexletcomponents/devops-example-app
 # open http://0.0.0.0:3000 in browser
  ```
 
@@ -29,7 +29,7 @@ Edit *.env* file to set up environment variables.
 
 ```env
 SERVER_MESSAGE="Hexlet Awesome Server"
-ROLLBAR_TOKEN=<your token>
+SENTRY_DSN=<your bugsink dsn>
 ```
 
 ## Development

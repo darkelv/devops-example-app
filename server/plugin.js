@@ -5,27 +5,22 @@ import { fileURLToPath } from 'node:url';
 import traps from '@dnlup/fastify-traps';
 import fastifyStatic from '@fastify/static';
 import pointOfView from '@fastify/view';
+import * as Sentry from '@sentry/node';
 import Pug from 'pug';
-import Rollbar from 'rollbar';
 
 import addRoutes from './routes.js';
 
 const __dirname = fileURLToPath(path.dirname(import.meta.url));
 
+if (process.env.SENTRY_DSN) {
+  Sentry.init({ dsn: process.env.SENTRY_DSN });
+}
+
 const registerErrorHandler = (app) => {
   app.setErrorHandler((error, _request, reply) => {
-    const { ROLLBAR_TOKEN } = process.env;
     const { message: errorMessage } = error;
 
-    if (ROLLBAR_TOKEN) {
-      const rollbar = new Rollbar({
-        accessToken: ROLLBAR_TOKEN,
-        captureUncaught: true,
-        captureUnhandledRejections: true,
-      });
-
-      rollbar.error(errorMessage);
-    }
+    Sentry.captureException(error);
 
     reply.status(500).view('500', { errorMessage });
   });
