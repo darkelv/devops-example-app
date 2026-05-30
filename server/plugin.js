@@ -55,10 +55,13 @@ export default (app, _options) => {
   return app;
 };
 
-// export const options = {
-//   logger: {
-//     options: {
-//       singleLine: true,
-//     },
-//   },
-// };
+export const options = {
+  logger: {
+    transport: {
+      target: 'pino-pretty',
+      options: {
+        singleLine: true,
+      },
+    },
+  },
+};
