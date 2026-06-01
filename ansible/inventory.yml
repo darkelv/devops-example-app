@@ -5,4 +5,5 @@ all:
     webservers:
       hosts:
         web1:
-          ansible_host: 65.108.149.193
+          ansible_host: 213.108.3.254
+          ansible_port: 7777
