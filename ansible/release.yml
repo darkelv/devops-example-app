@@ -12,6 +12,8 @@
         # Обязатлеьно указываем тег, который хотим деплоить
         # Если образа на сервере нет, Ansible его автоматически скачает
         image: "darkelv/devops-example-app:{{ version }}"
+        # При повторном деплое того же тега забираем свежий образ из registry
+        pull: always
         # Подключаем супервизор
         # Если контейнер остановится, например, из-за ошибок
         # супервизор докера его перезапустить
@@ -29,6 +31,7 @@
     - community.docker.docker_container:
         name: caddy
         image: "darkelv/devops-example-caddy:{{ version }}"
+        pull: always
         restart_policy: always
         state: started
         networks:
