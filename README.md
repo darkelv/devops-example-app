@@ -1,6 +1,6 @@
 # DevOps example app
 
-![CI status](https://github.com/hexlet-components/devops-example-app/actions/workflows/main.yml/badge.svg) [![Count docker images pulls](https://img.shields.io/docker/pulls/hexletcomponents/devops-example-app.svg)](https://hub.docker.com/r/hexletcomponents/devops-example-app)
+![CI status](https://github.com/hexlet-components/devops-example-app/actions/workflows/main.yml/badge.svg) [![push](https://github.com/darkelv/devops-example-app/actions/workflows/push.yml/badge.svg)](https://github.com/darkelv/devops-example-app/actions/workflows/push.yml) [![Count docker images pulls](https://img.shields.io/docker/pulls/hexletcomponents/devops-example-app.svg)](https://hub.docker.com/r/hexletcomponents/devops-example-app)
 
 This is a simple node application that shows on the main page server on which it is running and report errors to [Bugsink](https://www.bugsink.com/).
 
@@ -16,6 +16,10 @@ docker run -p 3000:3000 -e SERVER_MESSAGE="Hexlet Awesome Server" -e SENTRY_DSN=
 * Docker
 * Make
 * Node.js >= 20 (для локальной разработки без Docker)
+
+## Docker image
+
+Docker Hub image: `darkelv/devops-example-app:0.1.0`
 
 ## Install
 
@@ -55,6 +59,15 @@ make lint        # проверить код (Biome)
 make lint-fix    # автоисправление (Biome)
 make update-deps # обновить зависимости (ncu -u)
 ```
+
+## CI publish
+
+GitHub Actions runs tests on every push. If tests pass on `main`, the workflow builds the image and pushes it to Docker Hub with `0.1.0` and commit SHA tags.
+
+Required repository secrets:
+
+* `DOCKERHUB_USERNAME`
+* `DOCKERHUB_TOKEN`
 
 ## Start application
 
