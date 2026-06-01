@@ -36,7 +36,7 @@ compose-down:
 	docker compose down -v --remove-orphans
 
 docker-push:
-	docker buildx build --platform linux/amd64,linux/arm64 -t hexletcomponents/devops-example-app --push .
+	docker buildx build --platform linux/amd64,linux/arm64 -t darkelv/devops-example-app --push .
 
 setup: env-prepare install
 
@@ -68,4 +68,4 @@ ssh:
 	ssh root@`yq e '.all.children.webservers.hosts.web1.ansible_host' ansible/inventory.yml`
 
 # Для запуска x86-образа на ARM (например, Mac M1/M2):
-# docker run --platform linux/amd64 -p 3000:3000 -e SERVER_MESSAGE="Hexlet Awesome Server" hexletcomponents/devops-example-app
+# docker run --platform linux/amd64 -p 3000:3000 -e SERVER_MESSAGE="Hexlet Awesome Server" darkelv/devops-example-app
